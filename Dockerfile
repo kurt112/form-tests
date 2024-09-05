@@ -28,4 +28,4 @@ WORKDIR /app
 # Copy the built JAR file from the previous stage to the container
 COPY /mvn/target/zoloz-0.0.1-SNAPSHOT.jar /app/target/app.jar
 # Set the command to run the application
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "app.jar"]  
