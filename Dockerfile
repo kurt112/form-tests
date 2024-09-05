@@ -20,12 +20,12 @@ COPY src ./src
 # Build the application using Maven
 RUN mvn clean package -DskipTests
 
-CMD ["ls"]
+#CMD ["ls"]
 # Use an official OpenJDK image as the base image
-#FROM eclipse-temurin:17-jdk-focal
-### Set the working directory in the container
-#WORKDIR /app
-## Copy the built JAR file from the previous stage to the container
-#COPY /mvn/zoloz-0.0.1-SNAPSHOT.jar /app/target/app.jar
-## Set the command to run the application
-#CMD ["java", "-jar", "app.jar"]
+FROM eclipse-temurin:17-jdk-focal
+## Set the working directory in the container
+WORKDIR /app
+# Copy the built JAR file from the previous stage to the container
+COPY /mvn/target/zoloz-0.0.1-SNAPSHOT.jar /app/target/app.jar
+# Set the command to run the application
+CMD ["java", "-jar", "app.jar"]
