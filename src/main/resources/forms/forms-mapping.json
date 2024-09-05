@@ -1,0 +1,18 @@
+{
+  "eligibility": {
+    "name": "Eligibility",
+    "data": "eligibility.json"
+  },
+  "basicDetails": {
+    "name": "Basic Details",
+    "data": "basic-details.json"
+  },
+  "personal-details": {
+    "name": "Personal Details",
+    "data": "personal-details.json"
+  },
+  "employmentDetails": {
+    "name": "Employment Details",
+    "data": "employment-details.json"
+  }
+}

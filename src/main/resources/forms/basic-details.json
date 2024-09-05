@@ -1,0 +1,89 @@
+{
+  "basicDetailsForm": {
+    "next_form": "personal-details",
+    "prev_form": "eligibility",
+    "sequence_forms_data": [0, 1, 2,3],
+    "forms":{
+      "firstName": {
+        "queue": 0,
+        "id": "first-name",
+        "data_type": "String",
+        "place_holder": "First Name",
+        "is_editable": false,
+        "is_draggable": false,
+        "validation": "",
+        "required": true
+      },
+      "middleName": {
+        "queue": 1,
+        "id": "middle-name",
+        "data_type": "String",
+        "place_holder": "Middle Name",
+        "is_editable": false,
+        "is_draggable": false,
+        "validation": "",
+        "required": true
+      },
+      "lastName": {
+        "queue": 2,
+        "id": "last-name",
+        "data_type": "String",
+        "place_holder": "Last Name",
+        "is_editable": false,
+        "is_draggable": false,
+        "validation": "",
+        "required": true
+      },
+      "dateOfBirth": {
+        "queue": 3,
+        "id": "data-of-birth",
+        "data_type": "Date",
+        "place_holder": "Date of Birth",
+        "is_editable": false,
+        "is_draggable": false,
+        "validation": "",
+        "required": true
+      },
+      "mobileNumber": {
+        "queue": 4,
+        "id": "mobile-number",
+        "data_type": "String",
+        "place_holder": "Mobile Number",
+        "is_editable": false,
+        "is_draggable": false,
+        "validation": "",
+        "required": true
+      },
+      "emailAddress": {
+        "queue": 5,
+        "id": "email-address",
+        "data_type": "String",
+        "place_holder": "Email Address",
+        "is_editable": false,
+        "is_draggable": false,
+        "validation": "",
+        "required": true
+      },
+      "choose-id": {
+        "queue": 6,
+        "id": "choose-id",
+        "data_type": "String",
+        "place_holder": "Choose an ID",
+        "is_editable": false,
+        "is_draggable": false,
+        "validation": "",
+        "required": true
+      },
+      "id-number": {
+        "queue": 7,
+        "id": "id-number",
+        "data_type": "String",
+        "place_holder": "Id Number",
+        "is_editable": false,
+        "is_draggable": false,
+        "validation": "",
+        "required": true
+      }
+    }
+  }
+}
