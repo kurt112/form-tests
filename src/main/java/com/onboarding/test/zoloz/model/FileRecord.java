@@ -1,7 +1,6 @@
 package com.onboarding.test.zoloz.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.redis.core.RedisHash;
 
 import java.util.List;
 
