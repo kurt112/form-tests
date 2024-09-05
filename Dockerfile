@@ -26,6 +26,6 @@ FROM eclipse-temurin:17-jdk-focal
 ## Set the working directory in the container
 #WORKDIR /app
 # Copy the built JAR file from the previous stage to the container
-COPY /app/target/zoloz-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /app/target/zoloz-0.0.1-SNAPSHOT.jar app.jar
 # Set the command to run the application
 CMD ["java", "-jar", "app.jar"]
