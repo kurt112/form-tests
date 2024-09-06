@@ -28,7 +28,7 @@ public class TufController {
     @Cacheable(value = "getTufData")
     public ResponseEntity<Object> response () throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        Resource resource = resourceLoader.getResource("classpath:tuf.json");
+        Resource resource = resourceLoader.getResource("classpath:json/tuf.json");
 
         Tuf tuf = mapper.readValue(resource.getFile(), Tuf.class);
 
