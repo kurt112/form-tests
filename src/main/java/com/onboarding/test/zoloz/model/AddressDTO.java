@@ -6,7 +6,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public class Address {
+public class AddressDTO {
     String tenDigitPsgc;
     String name;
     String correspondenceCode;

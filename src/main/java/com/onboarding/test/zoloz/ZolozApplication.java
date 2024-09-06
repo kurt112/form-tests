@@ -18,6 +18,7 @@ import java.util.HashMap;
 @EnableCaching
 public class ZolozApplication {
 
+
     public static void main(String[] args) throws NoSuchAlgorithmException {
 
         SpringApplication.run(ZolozApplication.class, args);
@@ -37,6 +38,8 @@ public class ZolozApplication {
 //        System.out.println(publicKeyBase64);
 //        System.out.println("the private key");
 //        System.out.printf(privateKeyBase64);
+
+
 
     }
 
