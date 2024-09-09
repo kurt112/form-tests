@@ -21,7 +21,7 @@ public interface AddressRepository extends JpaRepository<Address, Integer> {
     @Query("select t from Address t where t.geographicLevel='Reg'")
     List<Address> getAllRegion();
 
-    @Query("select t from Address t where t.geographicLevel='Brgy'")
+    @Query("select t from Address t where t.geographicLevel='Bgy'")
     List<Address> getAllBarangay();
 
     @Query("select t from Address t where t.geographicLevel='Mun' and t.regionCode=?1")
@@ -30,7 +30,7 @@ public interface AddressRepository extends JpaRepository<Address, Integer> {
     @Query("select t from Address t where t.geographicLevel='Prov' and t.cityCode=?1")
     List<Address> getAllProvinceByCityCode(final String cityCode);
 
-    @Query("select t from Address t where t.geographicLevel='Brgy' and t.provinceCode=?1")
+    @Query("select t from Address t where t.geographicLevel='Bgy' and t.provinceCode=?1")
     List<Address> getAllBarangayByProvinceCode(final String provinceCode);
 
 }

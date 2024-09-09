@@ -24,6 +24,12 @@ public class AddressController {
         this.addressService = addressService;
     }
 
+    @GetMapping("/regions")
+    public ResponseEntity<List<Address>> getAllRegion() {
+
+        return new ResponseEntity<>(addressService.getAllRegion(), HttpStatus.OK);
+    }
+
     @GetMapping("/provinces")
     public ResponseEntity<List<Address>> getAllProvince() {
 
@@ -42,12 +48,6 @@ public class AddressController {
         return new ResponseEntity<>(addressService.getAllBarangay(), HttpStatus.OK);
     }
 
-    @GetMapping("/regions")
-    public ResponseEntity<List<Address>> getAllRegion() {
-
-        return new ResponseEntity<>(addressService.getAllRegion(), HttpStatus.OK);
-    }
-
     @GetMapping("/municipalities/{region-code}")
     public ResponseEntity<List<Address>> getAllCityByRegionCode(@PathVariable("region-code") final String regionCode) {
 
@@ -63,8 +63,11 @@ public class AddressController {
     @GetMapping("/barangays/{province-code}")
     public ResponseEntity<List<Address>> getAllBarangayByCityCode(@PathVariable("province-code") final String provinceCode) {
 
-        return new ResponseEntity<>(addressService.getAllProvinceByCityCode(provinceCode), HttpStatus.OK);
+        return new ResponseEntity<>(addressService.getAllBarangayByProvinceCode(provinceCode), HttpStatus.OK);
     }
+
+//    @GetMapping("/provinces/{provinces-id}/municipalities/{municipality-id}/barangays/{barangay-id}")
+//    public ResponseEntity<List<Address>> findProvincesById
 
 
 }
