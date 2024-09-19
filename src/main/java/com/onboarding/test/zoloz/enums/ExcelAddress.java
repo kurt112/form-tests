@@ -1,4 +1,4 @@
-package com.onboarding.test.zoloz.util;
+package com.onboarding.test.zoloz.enums;
 
 // NOTE: This util is for Excel Address Data xlsx located in classpath//address/addressData.xlsx
 public enum  ExcelAddress {

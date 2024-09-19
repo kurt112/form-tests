@@ -1,12 +1,17 @@
 package com.onboarding.test.zoloz.model;
 
-import org.springframework.data.annotation.Id;
 
-import java.util.List;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-
-public  class FileRecord {
+@Data
+@Table
+@Entity
+@NoArgsConstructor
+public class FileRecord {
     @Id
-    private int id;
-    private List<String> filenames;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String  id;
+    private String filenames;
 }

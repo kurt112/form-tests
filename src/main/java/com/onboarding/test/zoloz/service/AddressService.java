@@ -1,8 +1,8 @@
 package com.onboarding.test.zoloz.service;
 
 import com.onboarding.test.zoloz.model.Address;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
 import java.util.List;
 
@@ -13,15 +13,19 @@ public interface AddressService {
 
     List<Address> getAllCity();
 
-    List<Address> getAllBarangay();
+    Flux<Address> getAllBarangay();
 
-    List<Address> getAllRegion();
+    Flux<Address> getAllRegion();
 
-    List<Address> getAllCityByRegionCode(final String regionCode);
+    List<Address> getProvinceByCode(final String provinceCode);
 
-    List<Address> getAllProvinceByCityCode(final String cityCode);
+    List<Address> getMunicipalitiesInProvince(final String provinceCode);
 
-    List<Address> getAllBarangayByProvinceCode(final String provinceCode);
+    List<Address> getSingleMunicipalityByCodeInProvince(final String municipalityCode,final String provinceCode);
+
+    List<Address> getAllBarangaysInMunicipality(final String municipalityCode,final String provinceCode);
+
+    List<Address> getSingleBarangayInMunicipality(final String municipalityCode,final String provinceCode, final String barangayCode);
 
 
     void save(Address address);

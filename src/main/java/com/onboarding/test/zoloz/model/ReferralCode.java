@@ -7,25 +7,24 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table
-@Entity
-@Builder
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Entity
+@Table
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
-public class Address {
-
+public class ReferralCode{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String  id;
+    private String mobileNumber;
+    private String cardNumber;
     private String code;
-
-    private String regionCode;
-    private String provinceCode;
-    private String cityCode;
-    private String barangayCode;
-    private String name;
-    private String geographicLevel;
+    private String dateGeneratedOn;
+    private String expirationDate;
+    private Boolean isValid;
 }
+
+
+

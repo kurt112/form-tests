@@ -1,22 +1,31 @@
 package com.onboarding.test.zoloz;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.r2dbc.R2dbcAutoConfiguration;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.scheduler.Scheduler;
+import reactor.core.scheduler.Schedulers;
 
 import java.security.*;
 import java.util.HashMap;
+import java.util.concurrent.Executors;
 
 @SpringBootApplication(exclude = {R2dbcAutoConfiguration.class})
 @RestController
 @EnableCaching
 public class ZolozApplication {
+    @Value("${spring.datasource.maximum-pool-size}")
+    private int connectionPoolSize;
 
 
     public static void main(String[] args) throws NoSuchAlgorithmException {
@@ -42,18 +51,13 @@ public class ZolozApplication {
 
 
     }
-
-    @Cacheable(value = "commonDetails")
-    public String getCommonDetails()  {
-        return "wew";
+    @Bean
+    public Scheduler jdbcScheduler() {
+        return Schedulers.fromExecutor(Executors.newFixedThreadPool(connectionPoolSize));
     }
 
-    @GetMapping("test")
-    public ResponseEntity<HashMap<String, Object>> test() {
-        final HashMap<String, Object> test = new HashMap<>();
-
-
-        return new ResponseEntity<>(test, HttpStatus.OK);
+    @Bean
+    public TransactionTemplate transactionTemplate(PlatformTransactionManager transactionManager) {
+        return new TransactionTemplate(transactionManager);
     }
-
 }

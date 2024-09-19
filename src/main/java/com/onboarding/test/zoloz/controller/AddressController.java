@@ -3,31 +3,30 @@ package com.onboarding.test.zoloz.controller;
 
 import com.onboarding.test.zoloz.model.Address;
 import com.onboarding.test.zoloz.service.AddressService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 
+import java.time.Duration;
 import java.util.List;
 
 @RequestMapping("/addresses")
 @RestController
+@RequiredArgsConstructor
 public class AddressController {
 
     private final AddressService addressService;
 
-    @Autowired
-    public AddressController(AddressService addressService) {
-        this.addressService = addressService;
-    }
-
     @GetMapping("/regions")
-    public ResponseEntity<List<Address>> getAllRegion() {
+    public Flux<Address> getAllRegion() {
 
-        return new ResponseEntity<>(addressService.getAllRegion(), HttpStatus.OK);
+        return addressService.getAllRegion();
     }
 
     @GetMapping("/provinces")
@@ -42,32 +41,48 @@ public class AddressController {
         return new ResponseEntity<>(addressService.getAllCity(), HttpStatus.OK);
     }
 
-    @GetMapping("/barangays")
-    public ResponseEntity<List<Address>> getAllBarangay() {
+    @GetMapping(value = "/barangays", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux<Address> getAllBarangay() {
 
-        return new ResponseEntity<>(addressService.getAllBarangay(), HttpStatus.OK);
+        return this.addressService.getAllBarangay()
+                .delaySequence(Duration.ofSeconds(1));
     }
 
-    @GetMapping("/municipalities/{region-code}")
-    public ResponseEntity<List<Address>> getAllCityByRegionCode(@PathVariable("region-code") final String regionCode) {
+    @GetMapping("/provinces/{province-code}")
+    public ResponseEntity<List<Address>> getProvinceByCode(@PathVariable("province-code") final String code) {
 
-        return new ResponseEntity<>(addressService.getAllCityByRegionCode(regionCode), HttpStatus.OK);
+        return new ResponseEntity<>(addressService.getProvinceByCode(code), HttpStatus.OK);
     }
 
-    @GetMapping("/provinces/{city-code}")
-    public ResponseEntity<List<Address>> getAllProvinceByCityCode(@PathVariable("city-code") final String cityCode) {
+    @GetMapping("/provinces/{province-code}/municipalities")
+    public ResponseEntity<List<Address>> getMunicipalitiesInProvince(@PathVariable("province-code") final String provinceCode) {
 
-        return new ResponseEntity<>(addressService.getAllProvinceByCityCode(cityCode), HttpStatus.OK);
+        return new ResponseEntity<>(addressService.getMunicipalitiesInProvince(provinceCode), HttpStatus.OK);
     }
 
-    @GetMapping("/barangays/{province-code}")
-    public ResponseEntity<List<Address>> getAllBarangayByCityCode(@PathVariable("province-code") final String provinceCode) {
+    @GetMapping("/provinces/{province-code}/municipalities/{municipality-code}")
+    public ResponseEntity<List<Address>> getSingleMunicipalityByCodeInProvince(
+            @PathVariable("province-code") final String provinceCode,
+            @PathVariable("municipality-code") final String municipalityCode) {
 
-        return new ResponseEntity<>(addressService.getAllBarangayByProvinceCode(provinceCode), HttpStatus.OK);
+        return new ResponseEntity<>(addressService.getSingleMunicipalityByCodeInProvince(municipalityCode, provinceCode), HttpStatus.OK);
     }
 
-//    @GetMapping("/provinces/{provinces-id}/municipalities/{municipality-id}/barangays/{barangay-id}")
-//    public ResponseEntity<List<Address>> findProvincesById
+    @GetMapping("/provinces/{province-code}/municipalities/{municipality-code}/barangays")
+    public ResponseEntity<List<Address>> getAllBarangaysInMunicipality(
+            @PathVariable("province-code") final String provinceCode,
+            @PathVariable("municipality-code") final String municipalityCode) {
 
+        return new ResponseEntity<>(addressService.getAllBarangaysInMunicipality(municipalityCode,provinceCode), HttpStatus.OK);
+    }
+
+    @GetMapping("/provinces/{province-code}/municipalities/{municipality-code}/barangays/{barangay-code}")
+    public ResponseEntity<List<Address>> getSingleBarangayInMunicipality(
+            @PathVariable("province-code") final String provinceCode,
+            @PathVariable("municipality-code") final String municipalityCode,
+            @PathVariable("barangay-code") final String barangayCode) {
+
+        return new ResponseEntity<>(addressService.getSingleBarangayInMunicipality(municipalityCode, provinceCode,barangayCode), HttpStatus.OK);
+    }
 
 }

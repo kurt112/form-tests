@@ -1,20 +1,23 @@
-package com.onboarding.test.zoloz.configuration;
+package com.onboarding.test.zoloz.config;
 
-
+import com.onboarding.test.zoloz.enums.ExcelAddress;
 import com.onboarding.test.zoloz.model.Address;
 import com.onboarding.test.zoloz.model.AddressDTO;
 import com.onboarding.test.zoloz.service.AddressService;
 import com.onboarding.test.zoloz.util.AddressUtil;
-import com.onboarding.test.zoloz.util.ExcelAddress;
 import lombok.RequiredArgsConstructor;
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 @Configuration
 @RequiredArgsConstructor
@@ -108,13 +111,6 @@ public class AddressInit {
                     }
 
                     addressService.save(address);
-
-
-//                    addressesData.putIfAbsent(regionKey, new HashMap<>());
-//                    addressesData.get(regionKey).putIfAbsent(provinceKey, new HashMap<>());
-//                    addressesData.get(regionKey).get(provinceKey).putIfAbsent(municipalityKey, new HashMap<>());
-//                    addressesData.get(regionKey).get(provinceKey).get(municipalityKey).putIfAbsent(barangayKey, addressDTO);
-
                 }
                 catch (Exception e){
 

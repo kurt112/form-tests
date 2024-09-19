@@ -1,6 +1,5 @@
 package com.onboarding.test.zoloz.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
@@ -21,14 +20,14 @@ public class FormsController {
 
     private final ResourceLoader resourceLoader;
 
-    @GetMapping("/basic-details")
-    public JSONObject getBasicDetails() throws IOException {
-        Resource resource = resourceLoader.getResource("classpath:forms/basic-details.json");
-        ObjectMapper mapper = new ObjectMapper();
-
-
-        return mapper.readValue(resource.getInputStream(), JSONObject.class);
-    }
+//    @GetMapping("/basic-details")
+//    public JSONObject getBasicDetails() throws IOException {
+//        Resource resource = resourceLoader.getResource("classpath:forms/basic-details.json");
+//        ObjectMapper mapper = new ObjectMapper();
+//
+//
+//        return mapper.readValue(resource.getInputStream(), JSONObject.class);
+//    }
 
 
 }
