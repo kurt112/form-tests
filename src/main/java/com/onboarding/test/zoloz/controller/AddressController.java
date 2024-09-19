@@ -44,8 +44,7 @@ public class AddressController {
     @GetMapping(value = "/barangays", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<Address> getAllBarangay() {
 
-        return this.addressService.getAllBarangay()
-                .delaySequence(Duration.ofSeconds(1));
+        return this.addressService.getAllBarangay();
     }
 
     @GetMapping("/provinces/{province-code}")
